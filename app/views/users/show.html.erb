@@ -1,0 +1,10 @@
+<h1>Users#show</h1>
+
+<ul>
+<% @user.events do |event|%>
+  <li>
+    Date: <%= event.date %>
+    Location: <%= event.location %>
+  </li>
+<% end %>
+</ul>
