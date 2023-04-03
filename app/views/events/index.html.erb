@@ -1,2 +1,14 @@
 <h1>Upcoming Events</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+
+<table>
+  <tr>
+    <th>Location</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <% @events.each do |event| %>
+      <td><%= event.location %></td>
+      <td><%= event.date %></td>
+    <% end %>
+  </tr>
+</table>
