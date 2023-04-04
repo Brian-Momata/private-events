@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :users do
-    resources :events
+    resources :events do
+      resources :attended_events
+    end
   end
 
   root "events#index"
