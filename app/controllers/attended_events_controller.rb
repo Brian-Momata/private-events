@@ -7,7 +7,7 @@ class AttendedEventsController < ApplicationController
     @attended_event = AttendedEvent.new(attendee_id: params[:user_id], event_id: params[(:event_id)])
 
     if @attended_event.save
-      redirect_to events_index_path
+      redirect_to events_index_path, notice: "Succesfully added to list of attendees"
     else
       render :new
     end

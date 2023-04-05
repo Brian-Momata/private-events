@@ -21,3 +21,4 @@
     <% end %>
   </ol>
 <% end %>
+<%= link_to "Attend Event", user_event_attended_events_path(current_user, @event), data: { turbo_method: :post }  %>

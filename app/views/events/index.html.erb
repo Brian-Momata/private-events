@@ -1,14 +1,32 @@
 <h1>Upcoming Events</h1>
 
-<table>
+<table style="width:50%">
   <tr>
     <th>Location</th>
     <th>Date</th>
+    <th></th>
   </tr>
-  <tr>
-    <% @events.each do |event| %>
+
+  <% @events.each do |event| %>
+    <tr>
       <td><%= event.location %></td>
       <td><%= event.date %></td>
-    <% end %>
-  </tr>
+      <% if user_signed_in? %>
+        <td><%= link_to "Check details", user_event_path(current_user, event)%></td>
+      <% end %>
+    </tr>
+  <% end %>
+
 </table>
+<% if @events.empty? %>
+  <p>There are no Events</p>
+  <%= link_to "Create an Event", new_user_event_path(current_user) %>
+<% end %>
+<br>
+<% if user_signed_in? %>
+  <%= link_to "Your Events", user_path(current_user) %><br>
+  <%= link_to "sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+<% else %>
+  <p>Sign in to create and join events</p>
+  <%= link_to "Sign In", new_user_session_path %>
+<% end %>

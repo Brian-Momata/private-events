@@ -5,8 +5,9 @@
   <ul>
     <% @user.events.each do |event|%>
       <li>
-        Date: <%= event.date %>
-        Location: <%= event.location %>
+        Date: <%= event.date %><br>
+        Location: <%= event.location %><br>
+        <%= link_to "Check details", user_event_path(current_user, event)%>
       </li>
     <% end %>
   </ul>
@@ -16,10 +17,12 @@
 <ul>
   <% @user.events_invited.each do |event| %>
     <li>
-        Date: <%= event.date %>
-        Location: <%= event.location %>
+        Date: <%= event.date %><br>
+        Location: <%= event.location %><br>
+        <%= link_to "Check details", user_event_path(current_user, event)%>
     </li>
   <% end %>
 </ul>
-<%= link_to "sign out", destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+<%= link_to "Create an Event", new_user_event_path(current_user) %><br>
+<%= link_to "Home", root_path %> <br>
 
