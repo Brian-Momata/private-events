@@ -1,27 +1,53 @@
-<h1>Your events</h1>
+<h1>You are signed in as <%= current_user.email %></h1>
 
 <% if !@user.events.empty? %>
   <h2>Events you're hosting</h2>
   <ul>
-    <% @user.events.each do |event|%>
-      <li>
-        Date: <%= event.date %><br>
-        Location: <%= event.location %><br>
-        <%= link_to "Check details", user_event_path(current_user, event)%>
-      </li>
+    <% if !@user.events.past.empty? %>
+      <h3>Past Events</h3>
+      <% @user.events.past.each do |event|%>
+        <li>
+          Date: <%= event.date %><br>
+          Location: <%= event.location %><br>
+          <%= link_to "Check details", user_event_path(current_user, event)%>
+        </li>
+      <% end %>
+    <% end %>
+    <% if !@user.events.future.empty? %>
+      <h3>Upcoming Events</h3>
+      <% @user.events.future.each do |event|%>
+        <li>
+          Date: <%= event.date %><br>
+          Location: <%= event.location %><br>
+          <%= link_to "Check details", user_event_path(current_user, event)%>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 <% end %>
 
 <h2>Events where you're invited</h2>
 <ul>
-  <% @user.events_invited.each do |event| %>
-    <li>
-        Date: <%= event.date %><br>
-        Location: <%= event.location %><br>
-        <%= link_to "Check details", user_event_path(current_user, event)%>
-    </li>
-  <% end %>
+  <% if !@user.events_invited.past.empty? %>
+      <h3>Past Events</h3>
+      <% @user.events_invited.past.each do |event|%>
+        <li>
+          Date: <%= event.date %><br>
+          Location: <%= event.location %><br>
+          <%= link_to "Check details", user_event_path(current_user, event)%>
+        </li>
+      <% end %>
+    <% end %>
+    <% if !@user.events_invited.future.empty? %>
+      <h3>Upcoming Events</h3>
+      <% @user.events_invited.future.each do |event|%>
+        <li>
+          Date: <%= event.date %><br>
+          Location: <%= event.location %><br>
+          <%= link_to "Check details", user_event_path(current_user, event)%>
+        </li>
+      <% end %>
+    <% end %>
 </ul>
 <%= link_to "Create an Event", new_user_event_path(current_user) %><br>
 <%= link_to "Home", root_path %>

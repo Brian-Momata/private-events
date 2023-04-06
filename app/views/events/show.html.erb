@@ -3,10 +3,16 @@
   <tr>
     <th>Event Location<th>
     <th>Event Date</th>
+    <th></th>
   </tr>
   <tr>
     <td><%= @event.location %><td>
     <td><%= @event.date %></td>
+    <td>
+      <% if @event.creator == current_user %>
+        <%= link_to "Make Changes", edit_user_event_path %>
+      <% end %>
+    </td>
   </tr>
 </table>
 <h2>Activities:</h2>
